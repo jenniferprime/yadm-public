@@ -2,7 +2,7 @@
  yaDM (Yet-Another-oh shit something fell on my keyboarD-Manager)
 
 ## Why is this?
-this is the public repo for a side project I'm doing for uni so my group doesn't have to deal with my not doing web stuff for ages. (tho I'm currently still asking for permission)
+this is the public repo for a side project I'm doing for uni so my group doesn't have to deal with my not doing web stuff for ages.
 
 why is this so primitive? well, cuz I need to learn basics again and were not supposed to use frameworks.
 

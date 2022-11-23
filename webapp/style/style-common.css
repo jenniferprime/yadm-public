@@ -1,0 +1,442 @@
+@import "style-lib.css";
+
+* {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --nav-height: 3rem;
+    --gauge-height: 12rem;
+    --gauge-width: 14rem;
+
+
+    --color-main: #9D44B5;
+    --color-main-highlight: #d074e8;
+    --color-main-dark: #6c0d85;
+
+    --color-secondary: #CFBFF7;
+    --color-secondary-highlight: #fff2ff;
+    --color-main-dark: #9d8fc4;
+
+    --color-background: #333;
+    --color-background-lighter: #555;
+    --color-background-object: #FFFFFF25;
+
+    /*
+    colorscheme idea
+        #9D44B5 > Light: #d074e8 > Dark: #6c0d85
+        #E84855
+        #59F8E8
+        #CFBFF7 > Light: #fff2ff > Dark: #9d8fc4
+        #2274A5
+        */
+}
+
+body {
+    background-color: #333;
+}
+
+/* HTML element styles */
+.yadm-button {
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+
+    padding: 0.5rem 1rem;
+    background-color: var(--color-main);
+    color: whitesmoke;
+    border: none;
+    border-radius: 3px;
+
+    transition: background-color 0.2s ease-out,
+                color 0.3s ease-out;
+}
+
+.yadm-button:hover {
+    background-color: var(--color-main-highlight);
+    color: black;
+}
+
+.yadm-button-righticon {
+    padding-right: 2.5rem;
+}
+
+.yadm-button-container:has(.yadm-button-righticon)::after {
+    color: #fff2ff;
+
+    display: inline-block;
+    height: 1.4rem;
+    line-height: 1.4rem;
+    width: 1.4rem;
+
+    position: relative;
+    left: -2.1rem;
+    top: 0.4rem;
+
+    font-family: 'Material Icons';
+    font-size: 1.4rem;
+
+    pointer-events: none;
+    transition: color 0.1s ease-out,
+                transform 0.2s ease-out;
+
+    content: "expand_more";
+}
+
+.yadm-button-container:has(+.yadm-dash-system-list-table-container[style*="display: block"])::after {
+    transform: rotate(180deg);
+}
+
+.yadm-button-container:has(>.yadm-button-righticon:hover)::after {
+    color: black;
+}
+
+
+.yadm-nav-container {
+    width: 100vw;
+    height: var(--nav-height);
+
+    background-color: var(--color-secondary);
+
+    overflow: hidden;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 100;
+}
+
+.yadm-nav-menu {
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+    user-select: none;
+}
+
+.yadm-nav-menu > .nav-menu-item{
+    display: inline-block;
+    line-height: var(--nav-height);
+
+    font-size: 1.2rem;
+
+    margin: 0;
+    color: var(--color-main);
+
+    transition: background-color 0.1s ease-out,
+                color 0.1s ease-out;
+}
+
+
+
+.yadm-nav-menu-left {
+    float: left;
+    /*padding-left: 0.5rem;*/
+}
+
+.yadm-nav-menu-right {
+    float: right;
+    /*padding-left: 0.5rem;*/
+}
+
+.yadm-nav-menu a {
+    font-style: normal;
+    text-decoration: none;
+    color: inherit;
+    line-height: inherit;
+    padding: 0 0.5rem;
+    height: var(--nav-height);
+    display: block;
+}
+
+.yadm-nav-menu > .nav-menu-item:hover, .nav-menu-active a{
+    background-color: var(--color-main-highlight);
+    color: #FFF;
+}
+
+#text {
+    display: none;
+}
+
+.nav-menu-iconbtn {
+    height: var(--nav-height);
+    overflow: hidden;
+}
+
+.yadm-nav-icon {
+    line-height: var(--nav-height);
+}
+
+.nav-menu-iconbtn a {
+    height: var(--nav-height);
+    display: block;
+}
+
+.yadm-nav-icon-description {
+    display: inline-block;
+    line-height: var(--nav-height);
+    height: 3rem;
+    position: relative;
+    top: -0.3rem;
+
+    padding-right: 0.5rem;
+
+    /* TODO: make this less dumb*/
+}
+
+
+
+
+/* main styling */
+.yadm-main {
+    background-color: var(--color-background-lighter);
+
+    height: fit-content;
+
+    transition: width 0.05s linear,
+                height 0.5s linear, /* this doesn't work :(|idk why but opening things doesn't change the height for some reason */
+                margin 0.05s linear; /* TODO: this is real ugly */
+}
+
+.yadm-main-darktransparent {
+    background-color: #fff0;
+}
+
+.yadm-dash-header {
+    color: #fff2ff;
+    box-sizing: border-box;
+}
+
+.yadm-dash-header > h1, h2, h3 {
+    padding: 0.5rem 1rem;
+    font-weight: normal;
+}
+
+.yadm-dash-container {
+    display: flex;
+
+    width: 90%;
+    height: fit-content;
+    margin-left: 5%;
+
+    padding: 1rem 0;
+}
+
+.yadm-dash-gauge-container {
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.yadm-dash-summary {
+    align-items: flex-start;
+    justify-content: left;
+    flex-wrap: nowrap;
+}
+
+.yadm-dash-summary > .yadm-table-container {
+    width: 100%;
+}
+
+.yadm-table {
+    width: 100%;
+}
+
+.yadm-table-invisible {
+    color: var(--color-secondary-highlight);
+}
+
+.yadm-table-invisible > thead {
+    text-align: left;
+
+}
+
+.yadm-table tr {
+    line-height: 2rem;
+}
+
+.yadm-gauge {
+
+    height: var(--gauge-height);
+    width: var(--gauge-width);
+
+    border-radius: 3px;
+
+    /*background-color: #777;*/
+    background-color: var(--color-background-object);
+
+    margin: 0 1rem 1rem 1rem;
+
+    user-select: none;
+    position: relative;
+    z-index: 2;
+
+    overflow: hidden;
+
+    box-shadow: 0 2px 2px 0 #00000024,0 3px 1px -2px #0000001F,0 1px 5px 0 #00000033;
+
+    transition: box-shadow 0.1s ease-out;
+}
+
+.yadm-gauge:hover {
+    box-shadow: 0 3px 3px 0 #00000024,0 1px 7px 0 #0000001F,0 3px 1px -1px #00000033;
+}
+
+.yadm-dash-system-list {
+    display: block;
+}
+
+.yadm-gauge-bignumber {
+
+}
+
+.yadm-gauge-bignumber::before {
+    /*background: linear-gradient(#FFF0 0 20%, #FFF1 50%, var(--color-main-highlight));*/
+    background: linear-gradient(#FFF0, var(--color-main-highlight));
+
+    content: "";
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    transform:translateY(5rem);
+
+
+    z-index: -1;
+}
+
+.yadm-gauge-bignumber:hover::before {
+    transform:translateY(1rem);
+}
+
+.yadm-gauge > span {
+    opacity: 80%;
+    transition: opacity 0.1s ease-out;
+}
+
+.yadm-gauge:hover > span {
+    opacity: 100%;
+}
+
+.yadm-gauge-bignumber span, .yadm-gauge-horizontalbar span, .yadm-gauge-roundbar span {
+    color: var(--color-secondary-highlight);
+    position: absolute;
+    text-align: center;
+    width: var(--gauge-width);
+}
+
+.yadm-gauge-bignumber > .yadm-gauge-title, .yadm-gauge-horizontalbar > .yadm-gauge-title, .yadm-gauge-roundbar > .yadm-gauge-title {
+    line-height: 2rem;
+    font-size: 1.3rem;
+    margin-top: calc( var(--gauge-height) - 2rem);
+}
+
+.yadm-gauge-bignumber > .yadm-gauge-value, .yadm-gauge-horizontalbar > .yadm-gauge-value, .yadm-gauge-roundbar > .yadm-gauge-value {
+    line-height: calc( var(--gauge-height) - 2rem);
+    font-size: 4rem;
+}
+
+#yadm-systemlist-container {
+    display: none;
+}
+
+.yadm-gauge::before {
+    opacity: 65%;
+    transition: opacity 0.1s ease-out,
+                transform 0.1s ease-out;
+}
+
+.yadm-gauge:hover::before {
+    opacity: 85%;
+}
+
+.yadm-gauge-roundbar::before {
+    background: conic-gradient(#D074E820 15%, var(--color-main-highlight) 20%);
+    /* TODO: make this a thing in JavaScript */
+
+    content: "";
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    opacity: 35%;
+
+    z-index: -1;
+}
+
+.yadm-gauge-roundbar:hover::before {
+    opacity: 70%;
+}
+
+/* Login Styling */
+.yadm-login-body {
+    /*TODO: make this local*/
+    background: url("https://images.pexels.com/photos/2418664/pexels-photo-2418664.jpeg?cs=srgb&dl=pexels-greg-2418664.jpg&fm=jpg&_gl=1*15u5j53*_ga*MTA2OTg3NzI2My4xNjY4NjE4NDc1*_ga_8JE65Q40S6*MTY2ODYxODQ3Ni4xLjEuMTY2ODYxODQ4NC4wLjAuMA..");
+
+    /*https://www.pexels.com/photo/seashore-scenery-2418664/*/
+}
+
+.yadm-login-container {
+    background-color: #0004;
+    border-radius: 0;
+}
+
+.yadm-login-container form {
+    width: 80%;
+    margin: 10% auto;
+    height: 80%;
+
+    padding-bottom: 5rem;
+}
+
+.yadm-login-container h1 {
+    color: #fff2ff;
+    padding: 3rem 0 1rem 0;
+    user-select: none;
+}
+
+/* color overrides for mini material */
+
+.material-textbox-label {
+    color: #fff2ff;
+}
+
+.material-textbox:focus+hr {
+    background-color: var(--color-main-highlight);
+}
+
+.material-textbox-label:has(+.material-textbox:focus) {
+    color: var(--color-main-highlight);
+}
+
+.material-textbox-label:has(+.material-textbox:placeholder-shown) {
+    color: var(--color-secondary-highlight);
+}
+
+
+
+/* Login container styling*/
+
+.yadm-login-container input {
+    color: var(--color-secondary-highlight);
+}
+
+.yadm-background-credit {
+    position: fixed;
+    bottom: 3px;
+    right: 3px;
+    color: #FFF9;
+
+    user-select: none;
+
+    display: flex;
+
+    flex-wrap: wrap;
+    align-content: flex-end;
+    justify-content: right;
+}
+
+.yadm-background-credit span {
+    padding: 0 0.2rem;
+    text-align: right;
+}
